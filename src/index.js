@@ -1,3 +1,1 @@
-module.exports = function () {
-    return true;
-}
+module.exports = require('./ArrayIterator');
