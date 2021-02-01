@@ -65,6 +65,10 @@ class ArrayIterator {
         return true;
     }
 
+    take(qtd, predicate) {
+        return new ArrayIterator.TakeIterator(this, qtd, predicate || alwaysTrue);
+    }
+
     first(predicate) {
         const fn = predicate || alwaysTrue;
 
@@ -152,5 +156,27 @@ ArrayIterator.SelectIterator = class extends ArrayIterator {
         }
     }
 };
+
+ArrayIterator.TakeIterator = class extends ArrayIterator {
+    constructor(iterator, qtd, predicate) {
+        super(iterator);
+        this._qtd = qtd;
+        this._predicate = predicate;
+    }
+
+    *[Symbol.iterator]() {
+        let i = 0;
+
+        for (const element of this._source) {
+            if (!this._predicate(element))
+                continue;
+
+            if (i++ < this._qtd)
+                yield element;
+            else
+                break;
+        }
+    }
+}
 
 module.exports = ArrayIterator;
