@@ -1,7 +1,7 @@
 const A = require('assert');
 const ArrayIterator = require('../../src/ArrayIterator');
 
-describe('ArrayIterator.take()', () => {
+describe('ArrayIterator.skip()', () => {
     let source, arrayIterator;
 
     beforeEach(() => {
@@ -10,25 +10,25 @@ describe('ArrayIterator.take()', () => {
     });
 
     it('should return a new iterator', () => {
-        const query = arrayIterator.take(1);
+        const query = arrayIterator.skip(1);
 
         A.ok(query instanceof ArrayIterator);
-        A.ok(query instanceof ArrayIterator.TakeIterator);
+        A.ok(query instanceof ArrayIterator.SkipIterator);
     });
 
     describe('without predicate', () => {
         it('should return up to N elements', () => {
-            const query = arrayIterator.take(2);
+            const query = arrayIterator.skip(2);
 
             const result = Array.from(query);
 
-            A.deepStrictEqual(result, [1, 2]);
+            A.deepStrictEqual(result, [3, 4]);
         });
     });
 
     describe('with predicate', () => {
         it('should return up to N elements that match the predicate', () => {
-            const query = arrayIterator.take(2, p => p % 2 === 0);
+            const query = arrayIterator.skip(2, p => p % 2 !== 0);
 
             const result = Array.from(query);
 

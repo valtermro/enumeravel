@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha tests/**/*.tests.js"
+    "test": "mocha --bail -R min tests/**/*.tests.js"
   },
   "author": "",
   "license": "MIT",
