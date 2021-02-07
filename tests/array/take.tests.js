@@ -2,11 +2,10 @@ const A = require('assert');
 const ArrayIterator = require('../../src/ArrayIterator');
 
 describe('ArrayIterator.take()', () => {
-    let source, arrayIterator;
+    let arrayIterator;
 
     beforeEach(() => {
-        source = [1, 2, 3, 4];
-        arrayIterator = ArrayIterator.from(source);
+        arrayIterator = ArrayIterator.from([1, 2, 3, 4]);
     });
 
     it('should return a new iterator', () => {
